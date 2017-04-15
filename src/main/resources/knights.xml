@@ -9,7 +9,7 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     
     <bean id="knight" class="com.sgaidai.knight.BraveKnight"
-        p:quest-ref="quest" />
+        autowire="byType" />
     <!-- Создание SlayDragonQuest -->
     <bean id="quest"    class="com.sgaidai.knight.SDQuest" />
     <bean id="minstrel" class="com.sgaidai.knight.Minstrel" />
@@ -19,7 +19,9 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
             <aop:pointcut id="embark"
                 expression="execution(* *.embarkOnQuest(..))" />
             <aop:before pointcut-ref="embark" method="singBeforeQuest"/> <!-- Операция, выполняемая до -->
-            <aop:after pointcut-ref="embark" method="singAfterQuest"/> <!-- Операция, выполняемая после -->
+            <aop:after-returning pointcut-ref="embark"  method="singAfterQuest" />
+            <aop:after-throwing pointcut-ref="embark" method="errorQuest" />
+            
         </aop:aspect>
     </aop:config>
 </beans>
