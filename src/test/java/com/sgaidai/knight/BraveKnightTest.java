@@ -35,13 +35,14 @@ public class BraveKnightTest {
     @org.junit.Test
     public void testEmbarkOnquest() {
         Quest mockQuest =  mock(Quest.class);
-        Minstrel mockMinstrel = mock(Minstrel.class);
         
-        BraveKnight knight = new BraveKnight (mockQuest,mockMinstrel);
+        
+        BraveKnight knight = new BraveKnight ();
+        knight.setQuest(mockQuest);
         knight.embarkOnQuest();
-        verify(mockMinstrel,times(1)).singBeforeQuest();
+        
         verify(mockQuest,times(1)).embark();
-        verify(mockMinstrel,times(1)).singAfterQuest();
+        
        // verify(mockMinstrel,times(1)).embark();
         
         
