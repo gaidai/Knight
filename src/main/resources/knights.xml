@@ -23,5 +23,15 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
             <aop:after-throwing pointcut-ref="embark" method="errorQuest" />
             
         </aop:aspect>
+        
+        <aop:aspect ref="minstrel">
+            <aop:pointcut id="embark2" 
+                 expression="execution(* *.embarkOnQuest(..))"/>
+            <aop:around pointcut-ref="embark2" method="watchPerformance"/>
+        </aop:aspect>
     </aop:config>
+    
+    
+    
+    
 </beans>
